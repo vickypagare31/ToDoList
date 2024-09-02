@@ -33,7 +33,7 @@ public class TaskController {
         return taskService.saveTask(task);
     }
 
-    @DeleteMapping("{taskId}")
+    @DeleteMapping("/{taskId}")
     public void deleteTask(@PathVariable Long TaskId)
     {
         taskService.deleteTask(TaskId);
