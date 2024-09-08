@@ -1,5 +1,6 @@
 package com.ToDoList.TodoListApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +24,9 @@ public class User {
     private String password;
     private String email;
 
+
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Task> tasks;
 
 }

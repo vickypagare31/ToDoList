@@ -1,5 +1,6 @@
 package com.ToDoList.TodoListApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.regex.Pattern;
 
 @Entity
 @Getter
@@ -28,12 +30,18 @@ public class Task {
     private TaskStatus status;
 
     private LocalDate dueDate;
+
+    @JsonFormat(pattern="HH:mm:ss")
     private LocalDateTime createdAt;
+
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalDateTime updatedAt;
 
     @ManyToOne
     //Many tasks can be associated with the one user.
+
     @JoinColumn(name = "user_id") //Used to define foreign key column in the database.
+
     private User user;
 
     @PrePersist //Triggers a method before the entity is inserted into the database
@@ -47,5 +55,7 @@ public class Task {
     {
         updatedAt=LocalDateTime.now(); //Sets the last updated time
     }
+
+
 
 }
